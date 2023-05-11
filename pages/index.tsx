@@ -36,6 +36,9 @@ const Landing = () => {
           <StyledLink href="/image">
             Bild optimering
           </StyledLink>
+          <StyledLink href="/react-server-component">
+            Next.js v13.4 - React Server Component (harmonin mellan SSR och CSR)
+          </StyledLink>
         </div>
       </div>
     </div>
