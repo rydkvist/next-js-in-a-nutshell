@@ -9,19 +9,11 @@ const formatTimeFromResponse = (data: GetStockholmTimeResponse): string => {
     return time.split('.')[0];
 }
 
-const fetchSettings: RequestInit = {
-    // cache: 'no-cache' // (default) SSG
-    // next: { revalidate: 10 } // ISR
-    cache: 'no-store', // Server Side Rendering
-}
-
 export const getStockholmTime = async (delay?: number): Promise<GetStockholmTimeResponse> => {
     return new Promise<GetStockholmTimeResponse>((resolve, reject) => {
         setTimeout(async () => {
             try {
-                const res = await fetch(
-                    'https://timeapi.io/api/Time/current/zone?timeZone=Europe/Stockholm'
-                    , fetchSettings);
+                const res = await fetch('https://timeapi.io/api/Time/current/zone?timeZone=Europe/Stockholm', fetchSettings);
 
                 if (!res.ok) {
                     throw new Error(`Error: ${res.status} - Could not fetch Stockholm Time`);
@@ -36,3 +28,10 @@ export const getStockholmTime = async (delay?: number): Promise<GetStockholmTime
         }, delay || MOCK_DELAY_TIME);
     });
 };
+
+
+const fetchSettings: RequestInit = {
+    // cache: 'no-cache' // (default) SSG
+    // next: { revalidate: 10 } // ISR
+    // cache: 'no-store', // Server Side Rendering
+}
